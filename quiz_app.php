@@ -4,13 +4,25 @@ function evaluateQuiz(array $questions, array $answers): int
 {
     $score = 0;
 
-    for ($i = 0; $i < count($questions); $i++) {
-        if (strtolower($answers[$i]) === strtolower($questions[$i]['correct'])) {
+
+    foreach($questions as $index=>$question){
+        if(strtolower($answers[$index])===strtolower($question['correct'])){
             $score++;
         }
+        
     }
-
     return $score;
+
+                                //--- Also can be done with for loop --//
+
+    /* for ($i = 0; $i < count($questions); $i++) {
+    //     if (strtolower($answers[$i]) === strtolower($questions[$i]['correct'])) {
+    //         $score++;
+    //     }
+    // }
+
+     return $score; */
+  
 }
 
 $questions = [
@@ -27,7 +39,7 @@ echo "Please Enter the following Question : \n";
 foreach ($questions as $index => $question) {
     echo ($index + 1) . "." . $question['question'] . "\n";
     echo "Your Answer :";
-    $answers[] = readline();
+    $answers[] = trim(readline());
 }
 $totalQuestions = count($questions);
 $score = evaluateQuiz($questions, $answers);
